@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+<div class="row">
+  <div class="col-md-3">
+    <p class="lead">Πληροφορίες Αρχαίου Αντικειμένου:</p>
+    <div class="list-group">
+      
+    </div>
+    <div id="map"></div>
+  </div>
+  <div class="col-md-9">
+    <div class="thumbnail">
+      <img class="img-responsive" src="<%= campground.image %>">
+      <div class="caption-full">
+        <h4 class="pull-right">
+          Εποχή:<%= campground.cost %>
+          <div> Είδος:<%= campground.location %> </div>
+          
+
+        </h4>
+
+        <h4><a><%=campground.name%></a></h4>
+        <p><%= campground.description %></p>
+        <p>
+          <em>Εισήχθηκε Από: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+        </p>
+        <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+        <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Επεξεργασία</a>
+        <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="delete-form">
+          <button class="btn btn-danger">Διαγραφή</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+   
+</div>
+</div>
+
+<% include ../partials/footer %>

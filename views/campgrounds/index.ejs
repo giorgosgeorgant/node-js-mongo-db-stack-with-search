@@ -1,0 +1,56 @@
+<% include ../partials/header %> 
+
+     <header class="jumbotron">
+         <div class="container">
+             <h1><span class="glyphicon glyphicon-education"></span> Σύστημα Διαχείρισης Αρχαιολογικών Ευρημάτων</h1>
+             <p>Σε αυτόν τον ιστότοπο μπορείτε να αναζητήσετε αλλά και να εισάγετε αρχαιολογικά ευρήματα.</p>
+             <p>
+                <a class="btn btn-primary btn-lg" href="/campgrounds/new">Προσθήκη Νέου Ευρήματος</a>
+             </p>
+              <p>
+              <form action="/campgrounds" method="GET" class="form-inline" id="campground-search">
+                <div class="form-group col-md-12">
+                    <span>Ονομασία:<span>
+                  <input type="text" name="search1" placeholder="Αμφορέας του Διπύλου" class="form-control">
+                </div>
+              <!-- </form> -->
+              
+              <!-- <form action="/campgrounds" method="GET" class="form-inline" id="campground-age"> -->
+                <div class="form-group col-md-12">
+                    <span>Περιγραφή:</span>
+                  <input type="text" name="search2" placeholder="Στην Αρχαία Αθήνα" class="form-control">
+                </div>
+                
+                  <div class="form-group col-md-12">
+                    <span>Εποχή:</span>
+                  <input type="text" name="search3" placeholder="430 π.Χ" class="form-control">
+                </div>
+                
+                    <div class="form-group col-md-12">
+                    <span>Είδος:</span>
+                  <input type="text" name="search4" placeholder="Αμφορέας" class="form-control">
+                </div>
+              </form>
+             </p>
+         </div>
+         
+         
+     </header>
+     
+     <div class="row text-center flex-wrap" id="campground-grid">
+        <% campgrounds.forEach(function(campground){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src="<%= campground.image %>">
+                   <div class="caption">
+                       <h4><%= campground.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Περισσότερες Πληροφορίες</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+<% include ../partials/footer %>
